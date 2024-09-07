@@ -5,5 +5,10 @@ export function saveTasks(tasks) {
 
 export function loadTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
-    return tasks ? tasks.map(task => Object.assign(new Task(task.text), task)) : [];
+    return tasks ? tasks.map(task => {
+        const newTask = new Task(task.text);
+        newTask.completed = task.completed;
+        return newTask;
+    }) : [];
 }
+

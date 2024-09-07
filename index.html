@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>to-do-list</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Welcome to to-do-list!</h1>
 
-    <div class="task-input-div">
+    <form class="task-input-div">
         <label for="task-input">TASK</label>
         <input type="text" id="task-input" name="task-input" placeholder="Enter New Task" aria-label="Enter New Task">
-        <button id="add-task-btn">Add Task</button>
-    </div>
+        <button type="submit" id="add-task-btn">Add Task</button>
+    </form>
     <ul id="task-list"></ul>
+    
 
 
     <script type="module" src="app.js"></script>

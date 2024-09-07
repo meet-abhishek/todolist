@@ -26,7 +26,7 @@ export function createTaskElement(task, onComplete, onDelete) {
     deleteBtn.textContent = 'Delete';
     deleteBtn.addEventListener('click', () => {
         taskItem.remove();
-        onDelete();
+        onDelete(task); // Pass the task reference here
     });
 
     taskItem.appendChild(completeBtn);
@@ -38,3 +38,4 @@ export function createTaskElement(task, onComplete, onDelete) {
 
     return taskItem;
 }
+
