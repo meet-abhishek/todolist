@@ -1,3 +1,4 @@
+// task.js
 export class Task {
     constructor(text) {
         this.text = text;
@@ -10,11 +11,9 @@ export class Task {
 }
 
 export function createTaskElement(task, onComplete, onDelete) {
-    console.log(task);
     const taskItem = document.createElement('li');
     taskItem.textContent = task.text;
 
-    // Button to mark task as complete
     const completeBtn = document.createElement('button');
     completeBtn.textContent = 'Complete';
     completeBtn.addEventListener('click', () => {
@@ -23,7 +22,6 @@ export function createTaskElement(task, onComplete, onDelete) {
         onComplete(task);  // Call the onComplete function, passing the task
     });
 
-    // Button to delete the task
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Delete';
     deleteBtn.addEventListener('click', () => {
@@ -34,7 +32,6 @@ export function createTaskElement(task, onComplete, onDelete) {
     taskItem.appendChild(completeBtn);
     taskItem.appendChild(deleteBtn);
 
-    // Set the completed class if the task is completed
     if (task.completed) {
         taskItem.classList.add('completed');
     }
