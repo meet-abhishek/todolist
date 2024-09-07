@@ -3,22 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>to-do-list</title>
+    <title>To-Do List</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to to-do-list!</h1>
+    <header>
+        <h1>Welcome to To-Do List!</h1>
+    </header>
 
-    <form class="task-input-div">
-        <label for="task-input">TASK</label>
-        <input type="text" id="task-input" name="task-input" placeholder="Enter New Task" aria-label="Enter New Task">
-        <button type="submit" id="add-task-btn">Add Task</button>
-    </form>
-    <ul id="task-list"></ul>
+    <main>
+        <form class="task-input-div">
+            <fieldset>
+                <legend>Add a new task</legend>
+                <label for="task-input">Task</label>
+                <input type="text" id="task-input" name="task-input" placeholder="Enter New Task" aria-label="Enter New Task" aria-describedby="task-input-help">
+                <span id="task-input-help" class="visually-hidden">Type your task and click Add Task or press Enter.</span>
+                <button type="submit" id="add-task-btn" aria-label="Add Task">Add Task</button>
+            </fieldset>
+        </form>
+        <ul id="task-list"></ul>
+    </main>
+
+    <footer>
+        <!-- Optional footer content -->
+    </footer>
+
     
-
-
     <script type="module" src="app.js"></script>
+
+    
 </body>
 </html>

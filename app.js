@@ -1,49 +1,61 @@
-// app.js
-import { Task, createTaskElement } from './task.js';
+import { Task, createTaskElement } from './task.js'; // Importing the Task class and createTaskElement function
 import { saveTasks, loadTasks } from './storage.js';
 
 const taskInput = document.getElementById('task-input');
 const taskList = document.getElementById('task-list');
-const addTaskBtn = document.getElementById('add-task-btn');
-
-// Select the form
 const taskForm = document.querySelector('.task-input-div');
 
-// Event listener for form submission
+// Fetch tasks from the server
+async function fetchTasks() {
+    try {
+        const response = await fetch('http://localhost:3000/api/tasks');
+        const tasks = await response.json();
+        
+        tasks.forEach(task => {
+            const taskElement = createTaskElement(task, updateTask, deleteTask); // Create task element
+            taskList.appendChild(taskElement); // Append it to the task list
+        });
+    } catch (error) {
+        console.error('Error fetching tasks:', error);
+    }
+}
+
+// Save task to server
+async function addTask() {
+    const taskText = taskInput.value.trim();
+    if (taskText) {
+        const response = await fetch('http://localhost:3000/api/tasks', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: taskText })
+        });
+        const newTask = await response.json();
+        taskList.appendChild(createTaskElement(newTask, updateTask, deleteTask));
+        taskInput.value = '';
+    }
+}
+
+// Update task on the server
+async function updateTask(task) {
+    await fetch(`http://localhost:3000/api/tasks/${task._id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ completed: task.completed })
+    });
+}
+
+// Delete task from server
+async function deleteTask(task) {
+    await fetch(`http://localhost:3000/api/tasks/${task._id}`, {
+        method: 'DELETE'
+    });
+}
+
+// Load tasks when the page loads
+fetchTasks();
+
+// Handle form submission
 taskForm.addEventListener('submit', (e) => {
     e.preventDefault();
     addTask();
-});
-
-// Load tasks from local storage and display them
-let tasks = loadTasks();
-tasks.forEach(task => {
-    taskList.appendChild(createTaskElement(task, saveAllTasks, deleteTask));
-});
-
-function saveAllTasks() {
-    saveTasks(tasks);
-}
-
-function addTask() {
-    const taskText = taskInput.value.trim();
-    if (taskText) {
-        const newTask = new Task(taskText);
-        tasks.push(newTask);
-        taskList.appendChild(createTaskElement(newTask, saveAllTasks, deleteTask));
-        taskInput.value = '';
-        saveAllTasks();
-    }
-}
-
-function deleteTask(taskToDelete) {
-    tasks = tasks.filter(task => task !== taskToDelete);
-    saveAllTasks();
-}
-
-// Event Listener for pressing Enter key in input field
-taskInput.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        addTask();
-    }
 });

@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Poppins', sans-serif; /* Using Google Fonts like Poppins */
-    background-color: #f4f7f6;
+    background-color: #f0f4f8; /* Light background color */
     color: #333;
     display: flex;
     flex-direction: column;
@@ -19,53 +19,56 @@ body {
 
 /* Main container for To-Do List */
 h1 {
-    font-size: 2.5rem;
-    color: #1f3c88;
-    margin-bottom: 20px;
+    font-size: 2.8rem; /* Increased font size for a more commanding presence */
+    color: #2c3e50; /* Darker shade for a premium look */
+    margin-bottom: 30px;
+    text-align: center; /* Centered text */
 }
 
 /* Task Input Section */
 .task-input-div {
     background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* Slightly more rounded corners */
+    padding: 25px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
     width: 100%;
-    max-width: 500px;
+    max-width: 600px; /* Increased max width */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 30px;
+    margin-bottom: 40px; /* Increased margin for spacing */
 }
 
 .task-input-div input[type="text"] {
     flex: 1;
-    padding: 12px 16px;
+    padding: 14px 18px;
     font-size: 1rem;
-    border: 2px solid #ddd;
+    border: 2px solid #ccc; /* Soft border color */
     border-radius: 5px;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added shadow transition */
 }
 
 .task-input-div input[type="text"]:focus {
-    border-color: #1f3c88;
+    border-color: #2c3e50; /* Matching border color */
+    box-shadow: 0 0 5px rgba(44, 62, 80, 0.2); /* Subtle focus shadow */
     outline: none;
 }
 
 .task-input-div button {
-    background-color: #1f3c88;
+    background-color: #2c3e50; /* Darker button color */
     color: #fff;
-    padding: 12px 18px;
+    padding: 14px 20px;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
+    margin-left: 15px; /* Increased margin */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform transition */
 }
 
 .task-input-div button:hover {
-    background-color: #3f51b5;
+    background-color: #34495e; /* Slightly lighter on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
 }
 
 /* Task List */
@@ -73,32 +76,32 @@ h1 {
     list-style-type: none;
     padding: 0;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px; /* Increased max width */
 }
 
 /* Task Item */
 #task-list li {
     background-color: #fff;
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px; /* Slightly more rounded corners */
+    padding: 18px 24px; /* Increased padding */
+    margin-bottom: 20px; /* Increased margin */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition effects */
 }
 
 #task-list li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px); /* More pronounced lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Deeper shadow effect */
 }
 
 /* Task Item Completed */
 #task-list li.completed {
     text-decoration: line-through;
     color: #999;
-    background-color: #e0e0e0;
+    background-color: #e0e0e0; /* Soft background color */
 }
 
 /* Complete & Delete Buttons */
@@ -108,7 +111,7 @@ h1 {
     font-size: 0.9rem;
     color: #666;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 6px 12px; /* Increased padding */
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -119,25 +122,25 @@ h1 {
 }
 
 #task-list button.complete {
-    color: #28a745;
+    color: #28a745; /* Green color for complete */
 }
 
 #task-list button.delete {
-    color: #dc3545;
+    color: #dc3545; /* Red color for delete */
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 1080px) {
     .task-input-div {
-        flex-direction: column;
+        flex-direction: column; /* Stacked layout on small screens */
     }
 
     .task-input-div input[type="text"], .task-input-div button {
-        width: 100%;
+        width: 100%; /* Full width on small screens */
         margin: 10px 0;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 2.2rem; /* Adjusted font size for smaller screens */
     }
 }
