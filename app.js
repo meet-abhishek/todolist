@@ -1,5 +1,4 @@
 import { Task, createTaskElement } from './task.js'; // Importing the Task class and createTaskElement function
-import { saveTasks, loadTasks } from './storage.js';
 
 const taskInput = document.getElementById('task-input');
 const taskList = document.getElementById('task-list');
@@ -10,20 +9,24 @@ async function fetchTasks() {
     try {
         const response = await fetch('http://localhost:3000/api/tasks');
         const tasks = await response.json();
-        
+        console.log(tasks); // Check the structure of the tasks
         tasks.forEach(task => {
-            const taskElement = createTaskElement(task, updateTask, deleteTask); // Create task element
-            taskList.appendChild(taskElement); // Append it to the task list
+            // Make sure to create a new instance of Task when using createTaskElement
+            const taskInstance = new Task(task.text);
+            taskInstance.completed = task.completed; // Set the completed status
+            taskList.appendChild(createTaskElement(taskInstance, updateTask, deleteTask));
         });
     } catch (error) {
         console.error('Error fetching tasks:', error);
     }
 }
 
+
 // Save task to server
 async function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText) {
+        const task = new Task(taskText);
         const response = await fetch('http://localhost:3000/api/tasks', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

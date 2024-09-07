@@ -10,6 +10,7 @@ export class Task {
 }
 
 export function createTaskElement(task, onComplete, onDelete) {
+    console.log(task);
     const taskItem = document.createElement('li');
     taskItem.textContent = task.text;
 
